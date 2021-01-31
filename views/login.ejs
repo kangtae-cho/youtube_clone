@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>This is YOUTUBE</p>
+
+    <form action='/users/login' method="post">
+        ID: <input type="text" name='user_id' id='user_id' />
+        <br>
+        PW: <input type='password' name='user_pw' id='user_pw' />
+        <br>
+        <input type='submit' value='login' />
+    </form>
+  </body>
+</html>
