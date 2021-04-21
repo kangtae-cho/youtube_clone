@@ -2,15 +2,32 @@
   "name": "first-server",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon --exec babel-node www.js --experimental-json-modules"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.12.13",
+    "@rimiti/express-async": "^1.2.0",
+    "aws-sdk": "^2.888.0",
+    "babel-node": "^0.0.1-security",
+    "connect-busboy": "^0.0.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.1",
+    "helmet": "^4.4.1",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/node": "^7.12.13",
+    "nodemon": "^2.0.7"
   }
 }

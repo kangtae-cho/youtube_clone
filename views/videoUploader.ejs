@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form action='/videos/upload' method="post" enctype="multipart/form-data">
+        제목: <input type="text" name='subject' id='subject' />
+        <br>
+        파일: <input type='file' name='video' id='video' />
+        <br>
+        <input type='submit' value='업로드' />
+    </form>
+  </body>
+</html>

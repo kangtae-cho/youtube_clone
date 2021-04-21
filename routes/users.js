@@ -1,14 +1,20 @@
-var express = require('express');
+import express from 'express';
+import routes from '../route.js';
+import { doJoin, doLogin, isLogined, userHome } from '../controllers/userController.js';
+import { renderJoinView } from '../controllers/viewController.js';
+import {wrapAsync} from '@rimiti/express-async';
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// Single Source of Truth
+router.get(routes.HOME, userHome);
 
-router.post('/login', (req, res) => {
-  const user_id = req.body.user_id;
-  const user_pw = req.body.user_pw;
-});
+router.post(routes.LOGIN, isLogined, doLogin);
 
-module.exports = router;
+router.get(routes.JOIN, isLogined, renderJoinView);
+router.post(routes.JOIN, wrapAsync(doJoin));
+// router.post(routes.JOIN, (doJoin));
+
+
+// return statement
+export default router;

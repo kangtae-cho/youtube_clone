@@ -1,9 +1,15 @@
-var express = require('express');
+import { Router } from 'express';
+import express from 'express';
+import routes from '../route.js';
+import { renderHomeView } from '../controllers/viewController.js';
+
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Youtube Clone' });
-});
 
-module.exports = router;
+
+/* GET home page. */
+
+router.get(routes.HOME, renderHomeView);
+
+
+export default router;
