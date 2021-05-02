@@ -7,7 +7,8 @@ const video_scheme = {
     'user_id': 'string',
     'video_name': 'string',
     'description': 'string',
-    's3_path': 'string'
+    's3_path': 'string',
+    'is_finished': 'boolean'
 }
 
 export const createVideo = async (user_id, s3_path) => {
@@ -20,6 +21,7 @@ export const createVideo = async (user_id, s3_path) => {
     return_value.video_name = res.video_name;
     return_value.description = res.description;
     return_value.s3_path = res.s3_path;
+    return_value.is_finished = res.is_finished;
 
     return return_value;
 };
@@ -34,6 +36,7 @@ export const createVideoWithInfo = async (user_id, video_name, description, s3_p
     return_value.video_name = res.video_name;
     return_value.description = res.description;
     return_value.s3_path = res.s3_path;
+    return_value.is_finished = res.is_finished;
 
     return return_value;
 };
@@ -48,6 +51,24 @@ export const updateVideoByS3Path = async(video_name, description, s3_path) => {
     return_value.video_name = res.video_name;
     return_value.description = res.description;
     return_value.s3_path = res.s3_path;
+    return_value.is_finished = res.is_finished;
 
     return return_value;
+}
+
+export const finishVideoByS3Path = async(s3_path) => {
+    const res = await pg_pool.query(`UPDATE youtube_user.video SET is_finished = TRUE WHERE s3_path ='${s3_path}'`);
+
+    var return_value = cloneObj(video_scheme);
+
+    return_value.video_id = res.video_id;
+    return_value.user_id = res.user_id;
+    return_value.video_name = res.video_name;
+    return_value.description = res.description;
+    return_value.s3_path = res.s3_path;
+    return_value.is_finished = res.is_finished;
+
+    return return_value;
+
+    
 }
