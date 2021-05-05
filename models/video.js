@@ -77,3 +77,10 @@ export const readVideos = async() => {
     return res.rows;
 
 }
+
+export const readVideoById= async (video_id) => {
+    const res = await pg_pool.query(`SELECT * FROM youtube_user.video WHERE video_id ='${video_id}'`);
+
+    return res.rows;
+
+}

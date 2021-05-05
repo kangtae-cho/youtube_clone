@@ -1,19 +1,26 @@
 'use strict';
 import AWS from 'aws-sdk';
-import { createVideo, finishVideoByS3Path, readVideos, updateVideoByS3Path } from '../models/video.js';
+import { createVideo, finishVideoByS3Path, readVideoById, readVideos, updateVideoByS3Path } from '../models/video.js';
 const sts = new AWS.STS();
 
 export const uploadVideo = (req, res) => {
     console.log(req.body);
 }
 
-export const getVideo = (req, res) => {
+export const getVideo = async (req, res) => {
+    const video_id = req.query.video_id;
+    const return_rows = await readVideoById(video_id);
 
+    return res.json(return_rows);
 }
 
 export const getVideoList = async (req, res) => {
     const return_rows = await readVideos();
     return res.json(return_rows);
+}
+
+export const clickVideo = (req, res, next) => {
+    res.send('OK');
 }
 
 export const deleteVideo = (req, res) => {

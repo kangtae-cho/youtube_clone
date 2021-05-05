@@ -1,6 +1,6 @@
 import express from 'express';
 import { renderVideosView, renderVideoUploaderView } from '../controllers/viewController.js';
-import { deleteVideo, finishVideo, getVideo, getVideoList, initVideo, saveVideo, uploadVideo } from '../controllers/videoController.js';
+import { deleteVideo, finishVideo, getVideo, getVideoList, initVideo, saveVideo, uploadVideo, clickVideo } from '../controllers/videoController.js';
 import routes from '../route.js';
 var router = express.Router();
 
@@ -16,5 +16,7 @@ router.post(routes.UPLOAD, uploadVideo);
 router.post(routes.INIT_VIDEO, initVideo);
 router.post(routes.SAVE_VIDEO, saveVideo);
 router.post(routes.FINISH_VIDEO, finishVideo);
+
+router.get(routes.CLICK_VIDEO, clickVideo);
 
 export default router;
