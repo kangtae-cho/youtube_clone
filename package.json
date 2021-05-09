@@ -9,7 +9,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.12.13",
     "@rimiti/express-async": "^1.2.0",
-    "aws-sdk": "^2.888.0",
+    "aws-sdk": "^2.903.0",
     "babel-node": "^0.0.1-security",
     "connect-busboy": "^0.0.2",
     "cookie-parser": "~1.4.4",

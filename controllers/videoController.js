@@ -20,7 +20,23 @@ export const getVideoList = async (req, res) => {
 }
 
 export const clickVideo = (req, res, next) => {
-    res.send('OK');
+    const S3 = new AWS.S3({
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region : 'ap-northeast-2'
+    });
+
+    const video_id = req.query.video_id;
+    var now = new Date();
+
+    var param = {
+        'Bucket':'youtube.kangtae.log',
+        'Key': `logs/${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()}/${now.getHours()}/${now.getMinutes()}/${now.getSeconds()}.${now.getMilliseconds()}_${video_id}`,
+        'Body': ""
+    }
+    S3.upload(param, function(err, data){
+        res.send("OK");
+    });
 }
 
 export const deleteVideo = (req, res) => {

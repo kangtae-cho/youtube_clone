@@ -1,0 +1,7 @@
+{
+    "PG_HOST": "youtube-user-database.cjahajg1kfnz.ap-northeast-2.rds.amazonaws.com",
+    "PG_USER": "postgres",
+    "PG_PASSWORD": "tnsmd1108!!",
+    "PG_DATABASE": "youtube",
+    "PG_PORT": "5432"
+}
