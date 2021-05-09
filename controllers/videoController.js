@@ -1,18 +1,42 @@
 'use strict';
 import AWS from 'aws-sdk';
-import { createVideo, finishVideoByS3Path, updateVideoByS3Path } from '../models/video.js';
+import { createVideo, finishVideoByS3Path, readVideoById, readVideos, updateVideoByS3Path } from '../models/video.js';
 const sts = new AWS.STS();
 
 export const uploadVideo = (req, res) => {
     console.log(req.body);
 }
 
-export const getVideo = (req, res) => {
+export const getVideo = async (req, res) => {
+    const video_id = req.query.video_id;
+    const return_rows = await readVideoById(video_id);
 
+    return res.json(return_rows);
 }
 
-export const getVideoList = (req, res) => {
+export const getVideoList = async (req, res) => {
+    const return_rows = await readVideos();
+    return res.json(return_rows);
+}
 
+export const clickVideo = (req, res, next) => {
+    const S3 = new AWS.S3({
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region : 'ap-northeast-2'
+    });
+
+    const video_id = req.query.video_id;
+    var now = new Date();
+
+    var param = {
+        'Bucket':'youtube.kangtae.log',
+        'Key': `logs/${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()}/${now.getHours()}/${now.getMinutes()}/${now.getSeconds()}.${now.getMilliseconds()}_${video_id}`,
+        'Body': ""
+    }
+    S3.upload(param, function(err, data){
+        res.send("OK");
+    });
 }
 
 export const deleteVideo = (req, res) => {

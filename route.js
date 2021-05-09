@@ -17,6 +17,7 @@ const GET_VIDEO = '/getVideo';
 const INIT_VIDEO = '/initVideo';
 const SAVE_VIDEO = '/saveVideo';
 const FINISH_VIDEO = '/finishVideo';
+const CLICK_VIDEO = '/clickVideo'
 
 export default {
     'HOME': HOME,
@@ -32,5 +33,6 @@ export default {
     'GET_VIDEO': GET_VIDEO,
     'INIT_VIDEO': INIT_VIDEO,
     'SAVE_VIDEO': SAVE_VIDEO,
-    'FINISH_VIDEO': FINISH_VIDEO
+    'FINISH_VIDEO': FINISH_VIDEO,
+    'CLICK_VIDEO': CLICK_VIDEO
 }

@@ -69,6 +69,18 @@ export const finishVideoByS3Path = async(s3_path) => {
     return_value.is_finished = res.is_finished;
 
     return return_value;
+}
 
-    
+export const readVideos = async() => {
+    const res = await pg_pool.query('SELECT * FROM youtube_user.video WHERE is_finished=true and video_name is not null');
+
+    return res.rows;
+
+}
+
+export const readVideoById= async (video_id) => {
+    const res = await pg_pool.query(`SELECT * FROM youtube_user.video WHERE video_id ='${video_id}'`);
+
+    return res.rows;
+
 }
